@@ -38,7 +38,7 @@ Before making changes, we encourage you to check out [issues](https://github.com
 Thanks
 ------
 
-__TODO__
+Florent Pillet
 
 License
 -------
