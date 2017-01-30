@@ -30,11 +30,12 @@ public protocol Cache {
     
     /**
      Inserts or replaces a value in the cache for a given key.
+     If value is nil, removes/invalidates the value from the cache storage.
      */
-    mutating func set(_ value: Value?, for key: Key)
+    func set(_ value: Value?, for key: Key)
     
     /**
      Removes all values from the cache.
      */
-    mutating func clear()
+    func clear()
 }

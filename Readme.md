@@ -30,7 +30,7 @@ Developer instructions
 If you wish to contribute to RxCache, first clone this repository then bootstrap the dependencies with [Carthage](https://github.com/Carthage/Carthage#installing-carthage):
 
 ```shell
-carthage bootstrap --no-build
+carthage bootstrap
 ```
 
 Before making changes, we encourage you to check out [issues](https://github.com/jeremiegirault/RxCache/issues) and discuss proposed changes with the team, to avoid duplicate work. Once you're done making your changes and adding tests for them, please open a [pull request](https://github.com/jeremiegirault/RxCache/pulls).

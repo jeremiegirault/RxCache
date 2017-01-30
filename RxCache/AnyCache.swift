@@ -6,9 +6,11 @@
 //  Copyright © 2017 Jeremie Girault. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 
+/**
+ * A type-erased wrapper over any Cache
+ */
 public struct AnyCache<K, V>: Cache {
     public typealias Key = K
     public typealias Value = V
@@ -28,10 +30,9 @@ public struct AnyCache<K, V>: Cache {
     }
     
     public init<C: Cache>(_ cache: C) where C.Key == Key, C.Value == Value {
-        var owned = cache
         _get = { cache.observable(for: $0) }
-        _set = { owned.set($0, for: $1) }
-        _clear = { owned.clear() }
+        _set = { cache.set($0, for: $1) }
+        _clear = { cache.clear() }
     }
     
     public func observable(for key: K) -> Observable<V?> {

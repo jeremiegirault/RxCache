@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 /**
- * RandomAccessCache is a specific version of Cache which provides synchronous querying semantic.
+ * RandomAccessCache is a specialized version of Cache which provides synchronous querying semantic.
  */
 public protocol RandomAccessCache: Cache {
     func value(for key: Key) -> Value?
@@ -21,7 +21,6 @@ public protocol RandomAccessCache: Cache {
 //
 
 extension RandomAccessCache { // : Cache
-    
     public func observable(for key: Key) -> Observable<Value?> {
         return Observable.create { observer in
             observer.onNext(self.value(for: key))

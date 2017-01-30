@@ -13,6 +13,11 @@
 		98CACD7D1E3F4E3D0025487C /* RandomAccessCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD7C1E3F4E3D0025487C /* RandomAccessCache.swift */; };
 		98CACD7F1E3F4F270025487C /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD7E1E3F4F270025487C /* Cache.swift */; };
 		98CACD831E3F56630025487C /* AnyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD821E3F56630025487C /* AnyCache.swift */; };
+		98CACD8B1E3F90230025487C /* Observable+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD8A1E3F90230025487C /* Observable+Cache.swift */; };
+		98CACD8D1E3F93E60025487C /* Cache+Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD8C1E3F93E60025487C /* Cache+Composition.swift */; };
+		98CACD8F1E3F952C0025487C /* RxCache+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD8E1E3F952C0025487C /* RxCache+Utils.swift */; };
+		98CACD911E3F991B0025487C /* Cache+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD901E3F991B0025487C /* Cache+Map.swift */; };
+		98CACD941E3F9FFB0025487C /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CACD931E3F9FFB0025487C /* MemoryCache.swift */; };
 		BE73AD241CDCD102006F8B98 /* RxCache.h in Headers */ = {isa = PBXBuildFile; fileRef = BE73AD231CDCD102006F8B98 /* RxCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -46,6 +51,11 @@
 		98CACD7C1E3F4E3D0025487C /* RandomAccessCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomAccessCache.swift; sourceTree = "<group>"; };
 		98CACD7E1E3F4F270025487C /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		98CACD821E3F56630025487C /* AnyCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCache.swift; sourceTree = "<group>"; };
+		98CACD8A1E3F90230025487C /* Observable+Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Cache.swift"; sourceTree = "<group>"; };
+		98CACD8C1E3F93E60025487C /* Cache+Composition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cache+Composition.swift"; sourceTree = "<group>"; };
+		98CACD8E1E3F952C0025487C /* RxCache+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxCache+Utils.swift"; sourceTree = "<group>"; };
+		98CACD901E3F991B0025487C /* Cache+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cache+Map.swift"; sourceTree = "<group>"; };
+		98CACD931E3F9FFB0025487C /* MemoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
 		BE73AD201CDCD101006F8B98 /* RxCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE73AD231CDCD102006F8B98 /* RxCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RxCache.h; path = ../RxCache/RxCache.h; sourceTree = "<group>"; };
 		BE73AD251CDCD102006F8B98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../RxCache/Info.plist; sourceTree = "<group>"; };
@@ -96,6 +106,28 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		98CACD861E3F8F3C0025487C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				98CACD7E1E3F4F270025487C /* Cache.swift */,
+				98CACD7C1E3F4E3D0025487C /* RandomAccessCache.swift */,
+				98CACD821E3F56630025487C /* AnyCache.swift */,
+				98CACD8C1E3F93E60025487C /* Cache+Composition.swift */,
+				98CACD901E3F991B0025487C /* Cache+Map.swift */,
+				98CACD8A1E3F90230025487C /* Observable+Cache.swift */,
+				98CACD8E1E3F952C0025487C /* RxCache+Utils.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		98CACD921E3F9FDA0025487C /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				98CACD931E3F9FFB0025487C /* MemoryCache.swift */,
+			);
+			name = Implementations;
+			sourceTree = "<group>";
+		};
 		BE73AD161CDCD101006F8B98 = {
 			isa = PBXGroup;
 			children = (
@@ -120,9 +152,8 @@
 			children = (
 				BE73AD231CDCD102006F8B98 /* RxCache.h */,
 				BE73AD251CDCD102006F8B98 /* Info.plist */,
-				98CACD7E1E3F4F270025487C /* Cache.swift */,
-				98CACD7C1E3F4E3D0025487C /* RandomAccessCache.swift */,
-				98CACD821E3F56630025487C /* AnyCache.swift */,
+				98CACD861E3F8F3C0025487C /* Base */,
+				98CACD921E3F9FDA0025487C /* Implementations */,
 			);
 			path = RxCache;
 			sourceTree = "<group>";
@@ -248,7 +279,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98CACD8F1E3F952C0025487C /* RxCache+Utils.swift in Sources */,
+				98CACD941E3F9FFB0025487C /* MemoryCache.swift in Sources */,
 				98CACD831E3F56630025487C /* AnyCache.swift in Sources */,
+				98CACD911E3F991B0025487C /* Cache+Map.swift in Sources */,
+				98CACD8B1E3F90230025487C /* Observable+Cache.swift in Sources */,
+				98CACD8D1E3F93E60025487C /* Cache+Composition.swift in Sources */,
 				98CACD7F1E3F4F270025487C /* Cache.swift in Sources */,
 				98CACD7D1E3F4E3D0025487C /* RandomAccessCache.swift in Sources */,
 			);
