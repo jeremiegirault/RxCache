@@ -24,13 +24,6 @@ class RxCacheTests: QuickSpec {
         }
         
         it("perform some tests") {
-            let cache = NSCache<KeyHolder<String>, NSString>()
-            cache.setObject("hello", forKey: KeyHolder("hello"))
-            cache.setObject("world", forKey: KeyHolder("world"))
-            
-            let x = cache.object(forKey: KeyHolder("hello"))
-            print("\(x)")
-            
             expect(true).to(beTrue())
         }
     }
