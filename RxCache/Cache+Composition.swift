@@ -1,40 +1,36 @@
 //
 //  Cache+Composition.swift
-//  RxCache
+//  openrider
 //
-//  Created by Jeremie Girault on 30/01/2017.
-//  Copyright © 2017 Jeremie Girault. All rights reserved.
+//  Created by Jeremie Girault on 04/04/2017.
+//  Copyright © 2017 EC1. All rights reserved.
 //
 
-import RxSwift
+import Foundation
 
-extension Cache {
-    
-    public func compose<C: Cache>(_ next: C) -> AnyCache<Key, Value> where Key == C.Key, Value == C.Value {
-        return AnyCache(
+extension CacheStorage {
+    public func fallbackTo(_ other: CacheStorage) -> CacheStorage {
+        return CacheStorage(
             get: { key in
-                self.observable(for: key)
-                    .flatMapLatest { (result: Value?) -> Observable<Value?> in
-                        if let result = result { // if we have a result in this layer, use it
-                            return .just(result)
-                        } else { // use the next cache layer
-                            return next.observable(for: key)
-                                .do(onNext: { value in // update this layer with the value from next layer if any
-                                    if let value = value {
-                                        self.set(value, for: key)
-                                    }
-                                })
-                        }
+                // query this cache (=nearest)
+                return self.get(key: key)
+                    .flatMap { cachedValue in
+                        // if the value is cached in the front cache, just return this value
+                        if let cachedValue = cachedValue { return .just(cachedValue) }
+                        // else fetch the value from the fallback cache
+                        return other.get(key: key)
+                            .do(onNext: { cachedValue in
+                                // as a side effect, if the fallback cache provides a value, move it to the nearest cache
+                                if let cachedValue = cachedValue {
+                                    self.put(cachedValue, forKey: key)
+                                }
+                            })
                     }
             },
-            set: { value, key in
-                self.set(value, for: key)
-                next.set(value, for: key)
-            },
-            clear: {
-                self.clear()
-                next.clear()
+            put: { value, key in
+                self.put(value, forKey: key)
+                other.put(value, forKey: key)
             })
     }
-
 }
+

@@ -9,8 +9,7 @@
 import Quick
 import Nimble
 import RxSwift
-import RxBlocking
-import RxCache
+@testable import RxCache
 
 class RxCacheTests: QuickSpec {
     override func spec() {
@@ -19,8 +18,20 @@ class RxCacheTests: QuickSpec {
         beforeEach {
             disposeBag = DisposeBag()
         }
-
-//        it("performs some test") {
-//        }
+        
+        afterEach {
+            disposeBag = nil
+        }
+        
+        it("perform some tests") {
+            let cache = NSCache<KeyHolder<String>, NSString>()
+            cache.setObject("hello", forKey: KeyHolder("hello"))
+            cache.setObject("world", forKey: KeyHolder("world"))
+            
+            let x = cache.object(forKey: KeyHolder("hello"))
+            print("\(x)")
+            
+            expect(true).to(beTrue())
+        }
     }
 }
