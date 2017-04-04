@@ -10,7 +10,33 @@ __MORE DESCRIPTION HERE__
 Usage
 -----
 
-__TODO__
+```swift
+final class ViewModel {
+	
+	// allocate a cache with a given lifetime
+	private let autocompleteCache = Cache<[Prediction]>(name: "predictionCache", storage: .inMemory())
+
+	// the function we want to cache
+	func callServer(with input: String) -> Observable<[Prediction]> {
+		return ... // for example call the server
+	}
+
+	// the domain function
+	func predictions(for input: String) -> Observable<[Prediction]> {
+		return callServer(with: input)
+			.cached(in: autocompleteCache, forKey: input) // use the cache operator
+	}
+}
+```
+
+The cache operator will query the given cache and if the value is found it will be returned along the pipeline.
+If no value is found in cache, the original observable (here `callServer`) will be subscribed and result will be sent to the cache before continuing through the pipeline.
+
+The Cache class pools and reuse requests when possible independently of its backend storage. For example here, if `predictions` is called with high frequency with the same key, only one subscription will be made and all requests to the cache will wait for this subscription to finish to return the value.
+
+The cache class is independent of the storage it is constructed with. Which means that you can use either memory, disk, network or whatever storage you want by creating a CacheStorage instance.
+
+CacheStorage can be composed before being used by one or multiple cache. For example you could create a image cache for downloading image which will use a few megabytes in memory and compose it with a disk cache to store images for a few weeks. When a cache is composed, the caches are queried in nearest to furthest order and the first value found is returned. If a value is found, all nearest cache are proposed to cache the value to allow a faster access.
 
 
 Installing
